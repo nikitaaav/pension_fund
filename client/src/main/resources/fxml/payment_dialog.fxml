@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns="http://javafx.com/javafx"
+          xmlns:fx="http://javafx.com/fxml"
+          fx:controller="ru.pfr.client.controller.PaymentDialogController"
+          hgap="10" vgap="10">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" minWidth="100"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="200"/>
+    </columnConstraints>
+
+    <!-- Pensioner Selection -->
+    <Label text="Пенсионер:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <ComboBox fx:id="pensionerComboBox" GridPane.columnIndex="1" GridPane.rowIndex="0" maxWidth="Infinity"/>
+
+    <!-- Payment Date -->
+    <Label text="Дата платежа:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+    <DatePicker fx:id="paymentDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" maxWidth="Infinity"/>
+
+    <!-- Amount -->
+    <Label text="Сумма:" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+    <TextField fx:id="amountField" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+    <!-- Payment Type -->
+    <Label text="Тип платежа:" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+    <ComboBox fx:id="paymentTypeComboBox" GridPane.columnIndex="1" GridPane.rowIndex="3" maxWidth="Infinity"/>
+
+    <!-- Status -->
+    <Label text="Статус:" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+    <ComboBox fx:id="statusComboBox" GridPane.columnIndex="1" GridPane.rowIndex="4" maxWidth="Infinity"/>
+
+    <!-- Description -->
+    <Label text="Описание:" GridPane.columnIndex="0" GridPane.rowIndex="5"/>
+    <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+    <!-- Buttons -->
+    <HBox spacing="10" alignment="CENTER_RIGHT" GridPane.columnSpan="2" GridPane.rowIndex="6">
+        <padding>
+            <Insets top="20" right="0" bottom="0" left="0"/>
+        </padding>
+        <Button text="OK" onAction="#handleOk" defaultButton="true"/>
+        <Button text="Отмена" onAction="#handleCancel" cancelButton="true"/>
+    </HBox>
+</GridPane> 

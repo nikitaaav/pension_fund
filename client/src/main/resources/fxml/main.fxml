@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.pfr.client.controller.MainController">
+   <children>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Файл">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Выход" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Справочники">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showPensionersView" text="Пенсионеры" />
+              <MenuItem mnemonicParsing="false" onAction="#showPaymentsView" text="Платежи" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Отчеты">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showStatisticsView" text="Статистика" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Помощь">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#showAboutDialog" text="О программе" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+        <tabs>
+          <Tab fx:id="pensionersTab" closable="false" text="Пенсионеры">
+            <content>
+              <VBox spacing="10.0">
+                <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                <children>
+                  <HBox spacing="10.0">
+                    <children>
+                      <Button mnemonicParsing="false" onAction="#handleAddPensioner" text="Добавить" />
+                      <Button mnemonicParsing="false" onAction="#handleEditPensioner" text="Редактировать" />
+                      <Button mnemonicParsing="false" onAction="#handleDeletePensioner" text="Удалить" />
+                      <Button mnemonicParsing="false" onAction="#handleRefreshPensioners" text="Обновить" />
+                    </children>
+                  </HBox>
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <children>
+                      <Label text="Поиск:" />
+                      <TextField fx:id="pensionerSearchField" promptText="Введите текст для поиска" prefWidth="200.0" />
+                      <ComboBox fx:id="pensionerSearchType" prefWidth="120.0" />
+                      <Button mnemonicParsing="false" onAction="#handleClearPensionerFilters" text="Очистить фильтры" />
+                    </children>
+                  </HBox>
+                  <TableView fx:id="pensionersTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="lastNameColumn" prefWidth="100.0" text="Фамилия" />
+                      <TableColumn fx:id="firstNameColumn" prefWidth="100.0" text="Имя" />
+                      <TableColumn fx:id="middleNameColumn" prefWidth="100.0" text="Отчество" />
+                      <TableColumn fx:id="birthDateColumn" prefWidth="100.0" text="Дата рождения" />
+                      <TableColumn fx:id="snilsColumn" prefWidth="120.0" text="СНИЛС" />
+                      <TableColumn fx:id="addressColumn" prefWidth="200.0" text="Адрес" />
+                      <TableColumn fx:id="phoneColumn" prefWidth="100.0" text="Телефон" />
+                      <TableColumn fx:id="pensionStartDateColumn" prefWidth="120.0" text="Дата начала пенсии" />
+                      <TableColumn fx:id="basePensionAmountColumn" prefWidth="120.0" text="Размер пенсии" />
+                    </columns>
+                  </TableView>
+                </children>
+              </VBox>
+            </content>
+          </Tab>
+          <Tab fx:id="paymentsTab" closable="false" text="Платежи">
+            <content>
+              <VBox spacing="10.0">
+                <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                </padding>
+                <children>
+                  <HBox spacing="10.0">
+                    <children>
+                      <Button mnemonicParsing="false" onAction="#handleAddPayment" text="Добавить" />
+                      <Button mnemonicParsing="false" onAction="#handleEditPayment" text="Редактировать" />
+                      <Button mnemonicParsing="false" onAction="#handleDeletePayment" text="Удалить" />
+                      <Button mnemonicParsing="false" onAction="#handleRefreshPayments" text="Обновить" />
+                    </children>
+                  </HBox>
+                  <HBox spacing="10.0" alignment="CENTER_LEFT">
+                    <children>
+                      <Label text="Период:" />
+                      <DatePicker fx:id="paymentDateFrom" promptText="От" />
+                      <DatePicker fx:id="paymentDateTo" promptText="До" />
+                      <Label text="Сумма:" />
+                      <TextField fx:id="paymentAmountFrom" promptText="От" prefWidth="100.0" />
+                      <TextField fx:id="paymentAmountTo" promptText="До" prefWidth="100.0" />
+                      <Label text="Тип:" />
+                      <ComboBox fx:id="paymentTypeFilter" prefWidth="150.0" />
+                      <Button mnemonicParsing="false" onAction="#handleClearPaymentFilters" text="Очистить фильтры" />
+                    </children>
+                  </HBox>
+                  <TableView fx:id="paymentsTable" VBox.vgrow="ALWAYS">
+                    <columns>
+                      <TableColumn fx:id="pensionerColumn" prefWidth="200.0" text="Пенсионер" />
+                      <TableColumn fx:id="paymentDateColumn" prefWidth="120.0" text="Дата платежа" />
+                      <TableColumn fx:id="amountColumn" prefWidth="100.0" text="Сумма" />
+                      <TableColumn fx:id="paymentTypeColumn" prefWidth="150.0" text="Тип платежа" />
+                      <TableColumn fx:id="statusColumn" prefWidth="100.0" text="Статус" />
+                      <TableColumn fx:id="descriptionColumn" prefWidth="200.0" text="Описание" />
+                    </columns>
+                  </TableView>
+                </children>
+              </VBox>
+            </content>
+          </Tab>
+          <Tab fx:id="statisticsTab" closable="false" text="Статистика">
+            <content>
+              <VBox spacing="20.0">
+                <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                </padding>
+                <children>
+                  <Button mnemonicParsing="false" onAction="#handleRefreshStatistics" text="Обновить статистику" />
+                  <Label fx:id="totalPensionersLabel" text="Всего пенсионеров: " />
+                  <Label fx:id="averagePensionAmountLabel" text="Средний размер пенсии: " />
+                  <Label fx:id="maxPensionAmountLabel" text="Максимальный размер пенсии: " />
+                  <Label fx:id="minPensionAmountLabel" text="Минимальный размер пенсии: " />
+                </children>
+              </VBox>
+            </content>
+          </Tab>
+          <Tab fx:id="usersTab" text="Пользователи">
+            <AnchorPane>
+                <children>
+                    <TableView fx:id="usersTable" layoutX="14.0" layoutY="14.0" prefHeight="300.0" prefWidth="560.0">
+                        <columns>
+                            <TableColumn fx:id="userIdColumn" text="ID" prefWidth="50.0" />
+                            <TableColumn fx:id="usernameColumn" text="Имя пользователя" prefWidth="150.0" />
+                            <TableColumn fx:id="roleColumn" text="Роль" prefWidth="100.0" />
+                            <TableColumn fx:id="createdAtColumn" text="Создан" prefWidth="130.0" />
+                            <TableColumn fx:id="lastLoginAtColumn" text="Последний вход" prefWidth="130.0" />
+                            <TableColumn fx:id="activeColumn" text="Активен" prefWidth="60.0" />
+                        </columns>
+                    </TableView>
+                    <HBox layoutX="14.0" layoutY="320.0" spacing="10.0">
+                        <children>
+                            <Button fx:id="addUserButton" text="Добавить" onAction="#handleAddUser" />
+                            <Button fx:id="editUserButton" text="Изменить" onAction="#handleEditUser" />
+                            <Button fx:id="deleteUserButton" text="Удалить" onAction="#handleDeleteUser" />
+                        </children>
+                    </HBox>
+                </children>
+            </AnchorPane>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox> 
